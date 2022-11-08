@@ -23,7 +23,7 @@ class CandidateRepository  implements CandidateRepositoryInterface
 
     public function getOne(int $id): ?Candidate
     {
-        return $this->model->find($id);
+        return $this->model->find($id)->load(['skills', 'cv']);
     }
 
     public function create($data): Candidate
@@ -31,6 +31,11 @@ class CandidateRepository  implements CandidateRepositoryInterface
         $candidate = $this->model->create($data);
         $candidate->skills()->attach($data['skill_ids']);
         return $candidate->fresh()->load(['skills', 'cv']);
+    }
+
+    public function changeStatus(int $id, string $status): void
+    {
+        $this->model->where('id', $id)->update([ 'status'=> $status ]);
     }
 
 }

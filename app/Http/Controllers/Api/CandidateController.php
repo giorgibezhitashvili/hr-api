@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CandidateStatusRequest;
 use App\Http\Requests\CandidateStoreRequest;
 use App\Services\Candidate\CandidateService;
 use Illuminate\Http\Request;
@@ -26,6 +27,14 @@ class CandidateController extends Controller
 
     public function create(CandidateStoreRequest $request){
         return $this->candidateService->create($request);
+    }
+
+    public function changeStatus($candidateId, CandidateStatusRequest $request){
+        return $this->candidateService->changeStatus($candidateId, $request);
+    }
+
+    public function getTimeline(){
+        return $this->candidateService->getTimeline();
     }
 
 }

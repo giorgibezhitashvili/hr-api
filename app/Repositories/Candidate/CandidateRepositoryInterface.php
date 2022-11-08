@@ -11,5 +11,6 @@ interface CandidateRepositoryInterface
     public function getAll(ParameterBag $params): LengthAwarePaginator;
     public function getOne(int $id): ?Candidate;
     public function create($data): Candidate;
+    public function changeStatus(int $id, string $status): void;
 
 }

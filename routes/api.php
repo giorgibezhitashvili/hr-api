@@ -20,3 +20,5 @@ Route::get('candidate', [CandidateController::class, 'index']);
 Route::get('candidate/{candidateId}', [CandidateController::class, 'getOne']);
 Route::Post('candidate', [CandidateController::class, 'create']);
 Route::get('skill', [SkillController::class, 'index']);
+Route::Post('candidate/{candidateId}/status', [CandidateController::class, 'changeStatus']);
+Route::get('candidate/{candidateId}/timeline', [CandidateController::class, 'getTimeline']);

@@ -14,7 +14,8 @@ class Candidate extends Model
         'first_name',
         'last_name',
         'position',
-        'storage_id'
+        'storage_id',
+        'status'
     ];
 
     public function cv()
