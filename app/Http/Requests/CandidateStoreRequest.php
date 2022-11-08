@@ -27,6 +27,7 @@ class CandidateStoreRequest extends FormRequest
             'first_name' => 'required',
             'last_name' => 'required',
             'position' => 'required',
+            'skill_ids.*' => 'numeric',
         ];
     }
 

@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\CandidateController;
+use App\Http\Controllers\Api\SkillController;
 
 /*
 |--------------------------------------------------------------------------
@@ -18,3 +19,4 @@ use App\Http\Controllers\Api\CandidateController;
 Route::get('candidate', [CandidateController::class, 'index']);
 Route::get('candidate/{candidateId}', [CandidateController::class, 'getOne']);
 Route::Post('candidate', [CandidateController::class, 'create']);
+Route::get('skill', [SkillController::class, 'index']);

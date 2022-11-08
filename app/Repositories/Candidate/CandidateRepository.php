@@ -18,7 +18,7 @@ class CandidateRepository  implements CandidateRepositoryInterface
 
     public function getAll(ParameterBag $params): LengthAwarePaginator
     {
-        return $this->model->paginate(20);
+        return $this->model->with(['skills'])->paginate(20);
     }
 
     public function getOne(int $id): ?Candidate
@@ -28,7 +28,9 @@ class CandidateRepository  implements CandidateRepositoryInterface
 
     public function create($data): Candidate
     {
-        return $this->model->create($data);
+        $candidate = $this->model->create($data);
+        $candidate->skills()->attach($data['skill_ids']);
+        return $candidate->fresh()->load(['skills']);
     }
 
 }

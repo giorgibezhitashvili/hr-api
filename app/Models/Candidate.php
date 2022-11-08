@@ -15,4 +15,8 @@ class Candidate extends Model
         'last_name',
         'position'
     ];
+
+    public function skills(){
+        return $this->belongsToMany(Skill::class, 'candidate_and_skill');
+    }
 }
