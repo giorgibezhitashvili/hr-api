@@ -13,8 +13,14 @@ class Candidate extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'position'
+        'position',
+        'storage_id'
     ];
+
+    public function cv()
+    {
+        return $this->hasOne(Storage::class, 'id', 'storage_id');
+    }
 
     public function skills(){
         return $this->belongsToMany(Skill::class, 'candidate_and_skill');

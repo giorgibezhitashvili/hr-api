@@ -4,16 +4,22 @@ namespace App\Services\Candidate;
 
 use App\Http\Requests\CandidateStoreRequest;
 use App\Repositories\Candidate\CandidateRepositoryInterface;
+use App\Services\Storage\StorageService;
 use Symfony\Component\HttpFoundation\ParameterBag;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class CandidateService
 {
     protected $candidateRepository;
+    protected $storageService;
 
-    public function __construct(CandidateRepositoryInterface $candidateRepository)
+    public function __construct(
+        CandidateRepositoryInterface $candidateRepository,
+        StorageService $storageService
+    )
     {
         $this->candidateRepository = $candidateRepository;
+        $this->storageService = $storageService;
     }
 
     public function getAll(ParameterBag $params){
@@ -29,7 +35,12 @@ class CandidateService
     }
 
     public function create(CandidateStoreRequest $request){
-        return $this->candidateRepository->create($request->validated());
+        if($request->has('cv')){
+            $storage = $this->storageService->upload($request->file('cv'));
+            $request->merge(['storage_id' => $storage->id]);
+        }
+
+        return $this->candidateRepository->create($request->all());
     }
 
 }

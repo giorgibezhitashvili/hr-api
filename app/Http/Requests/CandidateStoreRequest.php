@@ -28,6 +28,7 @@ class CandidateStoreRequest extends FormRequest
             'last_name' => 'required',
             'position' => 'required',
             'skill_ids.*' => 'numeric',
+            'cv' => 'mimes:pdf,doc',
         ];
     }
 

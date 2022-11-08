@@ -30,7 +30,7 @@ class CandidateRepository  implements CandidateRepositoryInterface
     {
         $candidate = $this->model->create($data);
         $candidate->skills()->attach($data['skill_ids']);
-        return $candidate->fresh()->load(['skills']);
+        return $candidate->fresh()->load(['skills', 'cv']);
     }
 
 }
