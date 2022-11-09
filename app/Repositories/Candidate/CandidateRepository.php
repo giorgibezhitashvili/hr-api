@@ -29,7 +29,9 @@ class CandidateRepository  implements CandidateRepositoryInterface
     public function create($data): Candidate
     {
         $candidate = $this->model->create($data);
-        $candidate->skills()->attach($data['skill_ids']);
+        if(isset($data['skill_ids'])){
+            $candidate->skills()->attach($data['skill_ids']);
+        }
         return $candidate->fresh()->load(['skills', 'cv']);
     }
 

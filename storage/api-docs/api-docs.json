@@ -1,0 +1,228 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Hr  ApplicationAPI",
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/candidate/": {
+            "get": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "List of candidates",
+                "operationId": "9a0428999624d3e0e3d0bfc0440b908e",
+                "responses": {
+                    "200": {
+                        "description": "List of timeline"
+                    }
+                }
+            }
+        },
+        "/api/candidate/{candidateId}": {
+            "get": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Candidate object",
+                "operationId": "e9e9074b35192830655768ed9d2e4549",
+                "parameters": [
+                    {
+                        "name": "candidateId",
+                        "in": "path",
+                        "description": "ID of candidate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Candidate object"
+                    }
+                }
+            }
+        },
+        "/api/candidate": {
+            "post": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Create candidate",
+                "operationId": "16d93970e8b8f829ba578da9309a8634",
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "first_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "John"
+                                    },
+                                    "last_name": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "doe"
+                                    },
+                                    "position": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "developer"
+                                    },
+                                    "min_salary": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1000"
+                                    },
+                                    "max_salary": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "2000"
+                                    },
+                                    "skill_ids[]": {
+                                        "type": "number",
+                                        "format": "number",
+                                        "example": "1"
+                                    },
+                                    "linkedin_url": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "https://www.linkedin.com/feed/"
+                                    },
+                                    "cv": {
+                                        "type": "file"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong schema. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/candidate/{candidateId}/status": {
+            "post": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "Create candidate",
+                "operationId": "5ad4b93f61b36636137b28c28277fdc0",
+                "parameters": [
+                    {
+                        "name": "candidateId",
+                        "in": "path",
+                        "description": "ID of candidate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "requestBody": {
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "status": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "First Contact"
+                                    },
+                                    "comment": {
+                                        "type": "string",
+                                        "format": "text",
+                                        "example": "comment"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "422": {
+                        "description": "Wrong credentials response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Sorry, wrong schema. Please try again"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/candidate/{candidateId}/timeline": {
+            "get": {
+                "tags": [
+                    "Candidate"
+                ],
+                "summary": "List of Timeline",
+                "operationId": "77514c3a8d474a3b2618ced78dff9128",
+                "parameters": [
+                    {
+                        "name": "candidateId",
+                        "in": "path",
+                        "description": "ID of candidate",
+                        "required": true,
+                        "schema": {
+                            "type": "integer",
+                            "format": "int64"
+                        },
+                        "example": "1"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "List of timeline"
+                    }
+                }
+            }
+        },
+        "/api/skill": {
+            "get": {
+                "tags": [
+                    "Skill"
+                ],
+                "summary": "List of skills",
+                "operationId": "6f6fddcf0c20051b1036f91d2e558888",
+                "responses": {
+                    "200": {
+                        "description": "List of skills"
+                    }
+                }
+            }
+        }
+    }
+}

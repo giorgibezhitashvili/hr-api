@@ -48,7 +48,6 @@ class CandidateService
             $storage = $this->storageService->upload($request->file('cv'));
             $request->merge(['storage_id' => $storage->id]);
         }
-
         return $this->candidateRepository->create($request->all());
     }
 

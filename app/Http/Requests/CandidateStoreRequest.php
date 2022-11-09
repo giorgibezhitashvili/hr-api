@@ -29,6 +29,9 @@ class CandidateStoreRequest extends FormRequest
             'position' => 'required',
             'skill_ids.*' => 'numeric',
             'cv' => 'mimes:pdf,doc',
+            'min_salary' => 'numeric',
+            'max_salary' => 'numeric',
+            'linkedin_url' => 'string',
         ];
     }
 

@@ -14,6 +14,17 @@ class SkillController extends Controller
         $this->skillService = $skillService;
     }
 
+    /**
+     * @OA\Get(
+     * path="/api/skill",
+     * summary="List of skills",
+     * tags={"Skill"},
+     *  @OA\Response(
+     *    response=200,
+     *     description="List of skills",
+     *    )
+     * )
+     */
     public function index(Request $request){
         return $this->skillService->getAll($request->query);
     }
