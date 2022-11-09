@@ -18,7 +18,17 @@ class CandidateRepository  implements CandidateRepositoryInterface
 
     public function getAll(ParameterBag $params): LengthAwarePaginator
     {
-        return $this->model->with(['skills'])->paginate(20);
+        $candidateQB = $this->model->with(['skills', 'cv']);
+
+        foreach ($params->all() as $key => $param){
+            switch ($key){
+                case 'status':
+                    $candidateQB->where('status', $param);
+                    break;
+            }
+        }
+
+        return $candidateQB->paginate(20);
     }
 
     public function getOne(int $id): ?Candidate
